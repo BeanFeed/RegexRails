@@ -1,0 +1,4 @@
+name: RegexRails
+version: '1.0.3'
+main: com.beanfeed.regexRails.RegexRails
+api-version: '1.21'
