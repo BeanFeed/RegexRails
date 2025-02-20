@@ -64,7 +64,7 @@ public class DetectorRailListener implements Listener {
         Sign sign = null;
         for (Faces face : Faces.values()) {
             Block adjacent = rail.getRelative(face.modX, face.modY, face.modZ);
-            logger.info("Adjacent block: " + adjacent.getType());
+            //logger.info("Adjacent block: " + adjacent.getType());
             if (adjacent.getState() instanceof Sign s) {
                 sign = s;
             }
