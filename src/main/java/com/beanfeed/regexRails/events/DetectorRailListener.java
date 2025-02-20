@@ -74,7 +74,7 @@ public class DetectorRailListener implements Listener {
         String[] lines = sign.getSide(Side.FRONT).getLines();
 
         //Modes: "compare", "append", "set"
-        String mode = lines[0];
+        String mode = lines[0].toLowerCase().trim();
 
         //logger.info("Mode: -" + mode + "-");
 
