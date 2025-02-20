@@ -1,5 +1,6 @@
 package com.beanfeed.regexRails.events;
 
+import com.google.common.collect.ImmutableList;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -61,9 +62,9 @@ public class DetectorRailListener implements Listener {
 
     private void handleDetection(Minecart minecart, Block rail, BlockRedstoneEvent event) {
         Sign sign = null;
-        for (BlockFace face : BlockFace.values()) {
-            Block adjacent = rail.getRelative(face);
-
+        for (Faces face : Faces.values()) {
+            Block adjacent = rail.getRelative(face.modX, face.modY, face.modZ);
+            logger.info("Adjacent block: " + adjacent.getType());
             if (adjacent.getState() instanceof Sign s) {
                 sign = s;
             }
@@ -95,8 +96,9 @@ public class DetectorRailListener implements Listener {
             }
         } else {
             boolean activated = false;
-            for (BlockFace face : BlockFace.values()) {
-                Block adjacent = sign.getBlock().getRelative(face);
+            for (Faces face : Faces.values()) {
+                Block adjacent = sign.getBlock().getRelative(face.modX, face.modY, face.modZ);
+                if(adjacent.getType() == Material.DETECTOR_RAIL) continue;
                 if (adjacent.isBlockPowered() || adjacent.isBlockIndirectlyPowered()) {
                     activated = true;
                     break;
