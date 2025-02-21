@@ -91,6 +91,7 @@ public class DetectorRailListener implements Listener {
                     if(!minecart.getName().toLowerCase().trim().contains(value)) event.setNewCurrent(0);
                     break;
                 case "regex":
+                    value = lines[2];
                     if(!minecart.getName().matches(value)) event.setNewCurrent(0);
                     break;
             }
