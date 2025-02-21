@@ -1,4 +1,8 @@
 name: RegexRails
-version: '1.0.7'
+version: '1.0.8'
 main: com.beanfeed.regexRails.RegexRails
 api-version: '1.21'
+commands:
+  renamecart:
+    description: Rename the minecart the player is sitting in.
+    usage: /<command> <new name>
