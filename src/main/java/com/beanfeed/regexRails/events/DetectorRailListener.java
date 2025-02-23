@@ -34,17 +34,11 @@ public class DetectorRailListener implements Listener {
 
         Block block = event.getBlock();
 
-        // Only process detector rails
         if (block.getType() != Material.DETECTOR_RAIL) return;
 
-        // Get nearby minecart
         Minecart nearbyMinecart = getNearbyMinecart(block);
 
-        //logger.info(nearbyMinecart == null ? "No minecart detected" : "Minecart detected");
-        //logger.info("Old current: " + event.getOldCurrent());
-        //logger.info("New current: " + event.getNewCurrent());
         if (nearbyMinecart != null && event.getNewCurrent() == 15) {
-            //logger.info("BlockRedstoneEvent triggered");
             handleDetection(nearbyMinecart, block, event);
         }
     }
@@ -67,6 +61,7 @@ public class DetectorRailListener implements Listener {
             //logger.info("Adjacent block: " + adjacent.getType());
             if (adjacent.getState() instanceof Sign s) {
                 sign = s;
+                break;
             }
         }
 
@@ -89,6 +84,12 @@ public class DetectorRailListener implements Listener {
                     break;
                 case "contains":
                     if(!minecart.getName().toLowerCase().trim().contains(value)) event.setNewCurrent(0);
+                    break;
+                case "!equals":
+                    if(minecart.getName().toLowerCase().trim().equals(value)) event.setNewCurrent(0);
+                    break;
+                case "!contains":
+                    if(minecart.getName().toLowerCase().trim().contains(value)) event.setNewCurrent(0);
                     break;
                 case "regex":
                     value = lines[2];
@@ -114,7 +115,6 @@ public class DetectorRailListener implements Listener {
                     break;
                 case "set":
                     //logger.info("Setting minecart name to " + lines[1]);
-
                     minecart.setCustomName(lines[1]);
                     break;
             }
