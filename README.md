@@ -23,9 +23,12 @@ Configure your sign with:
 
 ```
 Line 1: Compare
-Line 2: equals/contains/regex
+Line 2: equals/!equals/contains/!contains/regex
 Line 3: [comparison value]
 ```
+
+The ! sign inverts the output of the comparison. For example, `!equals` will activate the detector rail when the minecart's name does not match the comparison value.
+
 ##### Example:
 
 ```
